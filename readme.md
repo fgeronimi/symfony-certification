@@ -17,7 +17,7 @@ Please help add new links/info. We currently have not all topics covered. For mo
 [Contributing page](contributing.md).
 
 The exam topics are copied from the [official exam topics](https://certification.symfony.com/). The master branch
-contains information for the 5.0 certification. For 4.0 and 3.0, please see the other branches.
+contains information for the 5.0 certification. 
 
 ## Table of Contents
 
