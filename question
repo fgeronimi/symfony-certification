@@ -1,0 +1,133 @@
+Public service
+Is it possible to create a service that is not publicly accessible?
+[Symfony > Components > Dependency Injection]
+- Yes
+- No
+
+User's Role
+I am correctly logged in, but I am not fully authenticated, what is the main cause?
+[Symfony > Components > Security]
+- I'm connected with an API Token
+- We're always fully autenticated
+- My User have no roles
+- I didn't tick the "Remember me" checkbox
+
+SwiftMailerBundle
+Which of these is the correct way to send an email in Symfony?
+
+- $message->send();
+- $this->getMailer()->send($message);
+- $this->get('mailer')->send($message);
+- $this->get('mailer')->sendEmail($message);
+
+Check for cached item
+Symfony > Components > Cache
+
+Considering the following code:
+---
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+
+$cache = new FilesystemAdapter();
+
+// retrieve the cache item
+$numProducts = $cache->getItem('stats.num_products');PHP
+----
+How would you check if an item already exists in the cache?
+
+if (!$numProducts->exists()) { 
+  // ... item does not exists in the cache
+}
+
+if (!$numProducts->isHit()) {
+    // ... item does not exists in the cache
+}
+
+if (!$numProducts->isFound()) {
+    // ... item does not exists in the cache
+}
+
+if (!$numProducts->isCached()) {
+    // ... item does not exists in the cache
+}
+
+
+PHP Error levels
+It is possible to set the PHP error levels that throw an exception when a PHP error occurs ?
+[Symfony > Components > Debug]
+
+Yes, with the Symfony\Component\Debug\ErrorHandler::setErrorLevel method
+Yes, with the Symfony\Component\Debug\ErrorHandler::throwAt method
+No, It's not possible.
+Yes, with the Symfony\Component\Debug\ErrorHandler::setErrorReporting method
+
+Redirection
+What does the 308 HTTP status code stand for?
+HTTP
+
+- Found (moved temporarily)
+x Permanent redirect
+- Temporary redirect
+- Moved permanently
+
+
+Strict Variables Mode
+[Twig]
+Consider the following Twig code snippet:
+
+The {{ color }} car!
+
+What will be the result of evaluating this template without passing it a color variable when the strict_variables global setting is on?
+
+The template will be partially evaluated and the string The will be displayed in the web browser.
+The template will be succesfully evaluated and the string The empty car! will be displayed in the web browser.
+Twig will raise a Twig_Error_Runtime exception preventing the template from being evaluated.
+The template will be succesfully evaluated and the string The  car! will be displayed in the web browser.
+
+Twig Internals
+[Twig]
+Which of the following Twig internal objects is responsible for transforming an AST (Abstract Syntax Tree) into PHP code?
+The Lexer
+The Parser
+The Environment
+The Compiler
+
+Array functions
+[PHP > Arrays]
+What is the output ?
+----
+<?php
+$base_array = ['red', 'green', 'yellow', 'white'];
+$replacements_array = [0 => 'orange', 4 => 'blue'];
+
+$result = array_replace($base_array, $replacements_array);
+print_r($result);
+----
+Array
+(
+[0] => yellow
+[1] => white
+[2] => blue
+[3] => green
+[4] => orange
+)
+        
+An error
+ 
+Array
+(
+[0] => orange
+[1] => green
+[2] => yellow
+[3] => white
+[4] => blue
+)
+
+Array
+(
+[0] => blue
+[1] => white
+[2] => yellow
+[3] => green
+[4] => orange
+)
+
