@@ -131,3 +131,121 @@ Array
 [4] => orange
 )
 
+Response headers
+[HTTP]
+Which of these headers don't belong to the Response ?
+
+- Referer
+x WWW-Authenticate
+x Proxy-Authenticate
+- User-Agent
+
+https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6.2
+
+
+
+Accessing Request Data
+[Symfony > Components > HttpFoundation]
+What will be returned by the following code when the query string is ?foo=bar?
+$request->query->get('bar', 'baz');
+
+- A Symfony\Component\HttpFoundation\Exception\QueryException will be thrown
+- null
+x baz
+- false
+
+http://symfony.com/doc/current/components/http_foundation.html#accessing-request-data
+
+
+
+
+FragmentListener
+Symfony > Components > HttpKernel
+What is the aim of the Symfony\Component\HttpKernel\EventListener\FragmentListener::onKernelRequest() listener on kernel.request event?
+
+x Handle as content fragments by this listener all URL paths starting with /_fragment.
+- Handle as content all image, css, javascript that not require security.
+- Handle as content all image, css, javascript that require security.
+- Handle as content all files to let user download them.
+
+https://api.symfony.com/3.0/Symfony/Component/HttpKernel/EventListener/FragmentListener.html
+
+Routing
+Symfony > Fullstack > FrameworkBundle
+How to get information on the route foobar of an application?
+
+- bin/debug.php foobar
+- It is not possible to do this.
+x bin/console debug:router foobar
+- bin/check.php foobar
+- bin/console router:debug foobar
+
+https://symfony.com/doc/current/routing.html#debugging-routes
+
+
+Form Events
+Symfony > Components > Form
+Which of the following are built-in Symfony form events?
+
+x FormEvents::POST_SUBMIT
+x FormEvents::PRE_SUBMIT
+x FormEvents::POST_SET_DATA
+- FormEvents::POST_DATA
+x FormEvents::PRE_SET_DATA
+- FormEvents::SUBMIT_DATA
+x FormEvents::SUBMIT
+- FormEvents::POST
+
+http://symfony.com/doc/current/components/form/form_events.html
+
+
+
+Function
+PHP > PHP Basics
+Which native function can be used to get the HTML content of Google.com's homepage?
+
+
+- This is not possible.
+- get_web_adress()
+- url_open()
+x fopen()
+- http_build_query()
+
+http://php.net/manual/en/function.fopen.php
+http://php.net/manual/en/function.http-build-query.php
+
+
+Interpretation
+PHP > PHP Basics
+Consider the following code snippet:
+echo print('hello');
+What will be the output when running this script?
+
+x hello1
+- hello5
+- hellotrue
+- hello0
+- hello
+
+http://php.net/echo
+http://php.net/print
+
+
+Array functions
+PHP > Arrays
+What is the output of the following PHP script?
+<?php
+$subs = [
+    'at'  => '@',
+    'com' => 'net'
+];
+$email = 'comnet@example.com';
+echo strtr($email, $subs);
+
+
+- comnet@example.com
+- comnetatexample.net
+- netnet@example.com
+x netnet@example.net
+
+https://php.net/manual/en/function.strtr.php
