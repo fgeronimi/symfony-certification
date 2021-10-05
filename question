@@ -9,16 +9,20 @@ I am correctly logged in, but I am not fully authenticated, what is the main cau
 [Symfony > Components > Security]
 - I'm connected with an API Token
 - We're always fully autenticated
-- My User have no roles
+x My User have no roles
 - I didn't tick the "Remember me" checkbox
+
+http://symfony.com/doc/current/security.html#roles
 
 SwiftMailerBundle
 Which of these is the correct way to send an email in Symfony?
 
 - $message->send();
 - $this->getMailer()->send($message);
-- $this->get('mailer')->send($message);
+x $this->get('mailer')->send($message);
 - $this->get('mailer')->sendEmail($message);
+
+http://symfony.com/doc/3.4/email.html#sending-emails
 
 Check for cached item
 Symfony > Components > Cache
@@ -34,22 +38,23 @@ $numProducts = $cache->getItem('stats.num_products');PHP
 ----
 How would you check if an item already exists in the cache?
 
-if (!$numProducts->exists()) { 
+- if (!$numProducts->exists()) { 
   // ... item does not exists in the cache
 }
 
-if (!$numProducts->isHit()) {
+x if (!$numProducts->isHit()) {
     // ... item does not exists in the cache
 }
 
-if (!$numProducts->isFound()) {
+- if (!$numProducts->isFound()) {
     // ... item does not exists in the cache
 }
 
-if (!$numProducts->isCached()) {
+- if (!$numProducts->isCached()) {
     // ... item does not exists in the cache
 }
 
+https://symfony.com/doc/current/components/cache.html#basic-usage-psr-6
 
 PHP Error levels
 It is possible to set the PHP error levels that throw an exception when a PHP error occurs ?
@@ -60,6 +65,9 @@ Yes, with the Symfony\Component\Debug\ErrorHandler::throwAt method
 No, It's not possible.
 Yes, with the Symfony\Component\Debug\ErrorHandler::setErrorReporting method
 
+
+http://api.symfony.com/3.1/Symfony/Component/Debug/ErrorHandler.html#method_throwAt
+
 Redirection
 What does the 308 HTTP status code stand for?
 HTTP
@@ -69,6 +77,7 @@ x Permanent redirect
 - Temporary redirect
 - Moved permanently
 
+https://tools.ietf.org/html/rfc7538
 
 Strict Variables Mode
 [Twig]
@@ -83,6 +92,12 @@ The template will be succesfully evaluated and the string The empty car! will be
 Twig will raise a Twig_Error_Runtime exception preventing the template from being evaluated.
 The template will be succesfully evaluated and the string The  car! will be displayed in the web browser.
 
+https://twig.symfony.com/doc/1.x/templates.html#variables
+https://twig.symfony.com/doc/2.x/templates.html#variables
+https://twig.symfony.com/doc/2.x/api.html#environment-options
+https://github.com/twigphp/Twig/blob/1.x/lib/Twig/Extension/Core.php#L1447-L1479
+
+
 Twig Internals
 [Twig]
 Which of the following Twig internal objects is responsible for transforming an AST (Abstract Syntax Tree) into PHP code?
@@ -90,6 +105,8 @@ The Lexer
 The Parser
 The Environment
 The Compiler
+
+http://twig.symfony.com/doc/internals.html
 
 Array functions
 [PHP > Arrays]
@@ -102,7 +119,7 @@ $replacements_array = [0 => 'orange', 4 => 'blue'];
 $result = array_replace($base_array, $replacements_array);
 print_r($result);
 ----
-Array
+- Array
 (
 [0] => yellow
 [1] => white
@@ -111,9 +128,9 @@ Array
 [4] => orange
 )
         
-An error
+- An error
  
-Array
+x Array
 (
 [0] => orange
 [1] => green
@@ -122,7 +139,7 @@ Array
 [4] => blue
 )
 
-Array
+- Array
 (
 [0] => blue
 [1] => white
@@ -130,6 +147,9 @@ Array
 [3] => green
 [4] => orange
 )
+
+https://php.net/array
+https://php.net/manual/en/function.array-replace.php
 
 Response headers
 [HTTP]
@@ -249,3 +269,114 @@ echo strtr($email, $subs);
 x netnet@example.net
 
 https://php.net/manual/en/function.strtr.php
+
+
+Dumpers
+Symfony > Components > VarDumper
+What is a Dumper?
+
+
+- A dumper is responsible for creating a var_export of any PHP variable.
+- A dumper is responsible for getting each property values of PHP object.
+- A dumper is responsible for outputting a string representation of a PHP variable.
+- A dumper is responsible for creating a var_dump of any PHP variable.
+
+http://symfony.com/doc/current/components/var_dumper/advanced.html#dumpers
+
+
+Public service
+Symfony > Components > Dependency Injection
+Is it possible to create a service that is not publicly accessible?
+
+x Yes
+- No
+
+https://symfony.com/doc/current/components/dependency_injection/advanced.html#marking-services-as-public-private
+
+/////
+Symfony > Components > Routing
+Single choice
+Parameters in route
+Considering the following definition of route:
+
+blog:
+    path: /blog/{page}
+    defaults:
+        _controller: AppBundle:Blog:index
+        title: "Hello world!"
+YAML
+How can you retrieve the parameter title?
+
+From the Request object passed by argument to the action of the controller, by writing the following:
+
+$title = $request->attributes->get('title');
+PHP
+From the Request object passed by argument to the action of the controller, by writing the following:
+
+$title = $request->attributes['title'];
+PHP
+From the Request object passed by argument to the action of the controller, by writing the following:
+
+$title = $request->getAttributes()['title'];
+PHP
+From the Request object passed by argument to the action of the controller, by writing the following:
+
+$title = $request->getAttributes()->get('title');
+PHP
+From the Request object passed by argument to the action of the controller, by writing the following:
+
+$title = $request->attributes->get('title');
+PHP
+https://symfony.com/doc/3.4/cookbook/routing/extra_information.html
+////
+
+
+Symfony > Components > Debug
+Single choice
+PHP Error levels
+It is possible to set the PHP error levels that throw an exception when a PHP error occurs ?
+
+Yes, with the Symfony\Component\Debug\ErrorHandler::setErrorReporting method
+
+No, It's not possible.
+
+Yes, with the Symfony\Component\Debug\ErrorHandler::setErrorReporting method
+
+Yes, with the Symfony\Component\Debug\ErrorHandler::throwAt method
+
+Yes, with the Symfony\Component\Debug\ErrorHandler::setErrorLevel method
+
+http://api.symfony.com/3.1/Symfony/Component/Debug/ErrorHandler.html#method_throwAt
+//////
+16. Doctrine > Database Abstraction Layer
+Multiple choices
+Connection URL
+Which of the following are valid database URLs that can be used in the dbal.url option in Symfony applications?
+
+# config/packages/doctrine.yaml
+doctrine:
+    dbal:
+        url: ...
+YAML
+pgsql://localhost:5432
+
+mysql://localhost:4486/foo?charset=UTF-8
+
+sqlite:///:memory:
+
+sqlite:///data.db
+
+mysql://localhost/mydb@user:secret
+
+mysql://localhost:4486/foo?charset=UTF-8
+
+pgsql://localhost:5432
+
+sqlite:///:memory:
+
+sqlite:///data.db
+
+https://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
+//////
+
+
