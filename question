@@ -308,28 +308,22 @@ YAML
 How can you retrieve the parameter title?
 
 From the Request object passed by argument to the action of the controller, by writing the following:
-
 $title = $request->attributes->get('title');
-PHP
-From the Request object passed by argument to the action of the controller, by writing the following:
 
+From the Request object passed by argument to the action of the controller, by writing the following:
 $title = $request->attributes['title'];
-PHP
-From the Request object passed by argument to the action of the controller, by writing the following:
 
+From the Request object passed by argument to the action of the controller, by writing the following:
 $title = $request->getAttributes()['title'];
-PHP
-From the Request object passed by argument to the action of the controller, by writing the following:
 
+From the Request object passed by argument to the action of the controller, by writing the following:
 $title = $request->getAttributes()->get('title');
-PHP
-From the Request object passed by argument to the action of the controller, by writing the following:
 
+From the Request object passed by argument to the action of the controller, by writing the following:
 $title = $request->attributes->get('title');
-PHP
+
 https://symfony.com/doc/3.4/cookbook/routing/extra_information.html
 ////
-
 
 Symfony > Components > Debug
 Single choice
@@ -378,5 +372,13 @@ sqlite:///data.db
 
 https://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
 //////
+Which design pattern implements the EventDispatcher component?'
+[Framework]
+- Adapter
+- Decorator
+x Observer
+x Mediator
+
+https://symfony.com/doc/current/components/event_dispatcher.html#introduction
 
 
