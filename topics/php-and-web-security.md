@@ -10,6 +10,15 @@ title: PHP and Web Security - Symfony Certification Preparation List
 ## Object Oriented Programming
 - [Classes and Objects - php.net](http://php.net/manual/en/language.oop5.php)
 
+À partir de PHP 8.0.0, les méthodes et propriétés peuvent aussi être accédés avec l'opérateur "nullsafe": ?->. L'opérateur nullsafe fonctionne à l'identique que l'accès de propriétés ou méthodes comme si dessus, à l'exception que si l'objet qui est déréférencé est null alors null sera retourné au lieu de lancer une exception. Si le déréférencement fait par d'une chaîne, le reste de la chaîne est ignoré.
+
+Note:
+L'opérateur nullsafe est mieux utilisé quand null est considéré une valeur valide et potentiellement attendu pour une propriété ou valeur de retour d'une méthode. Pour indiquer une erreur, une exception lancé est préférable.
+
+Note:
+Les constantes de classes peuvent être redéfinies par une classe enfant.
+
+
 ## Namespaces
 - [PHP Namespaces in 120 seconds - symfonycasts.com](https://symfonycasts.com/screencast/php-namespaces-in-120-seconds)
 - [Namespaces - php.net](http://php.net/manual/en/language.namespaces.php)
