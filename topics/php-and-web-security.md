@@ -18,6 +18,7 @@ L'opérateur nullsafe est mieux utilisé quand null est considéré une valeur v
 Note:
 Les constantes de classes peuvent être redéfinies par une classe enfant.
 
+Le constructeur peut être rendu privé ou protégé pour empêcher son appel depuis l'extérieur. Dans ce cas, seul une méthode statique sera capable d'instancier la classe. Car elles sont dans la même définition de classe elles ont accès aux méthodes privées, même dans une instance différente de l'objet. Un constructeur privé est optionnel et peut ou pas faire de sens en fonction du cas d'utilisation.
 
 ## Namespaces
 - [PHP Namespaces in 120 seconds - symfonycasts.com](https://symfonycasts.com/screencast/php-namespaces-in-120-seconds)
