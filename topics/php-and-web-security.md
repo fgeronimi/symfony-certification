@@ -20,6 +20,9 @@ Les constantes de classes peuvent être redéfinies par une classe enfant.
 
 Le constructeur peut être rendu privé ou protégé pour empêcher son appel depuis l'extérieur. Dans ce cas, seul une méthode statique sera capable d'instancier la classe. Car elles sont dans la même définition de classe elles ont accès aux méthodes privées, même dans une instance différente de l'objet. Un constructeur privé est optionnel et peut ou pas faire de sens en fonction du cas d'utilisation.
 
+
+Les méthodes suivantes sont considérées magiques : __construct(), __destruct(), __call(), __callStatic(), __get(), __set(), __isset(), __unset(), __sleep(), __wakeup(), __serialize(), __unserialize(), __toString(), __invoke(), __set_state() __clone(), et __debugInfo().
+
 Avertissement
 Toutes les méthodes magiques, à l'exception de __construct(), __destruct(), et __clone(), doivent être déclaré en tant que public, sinon une E_WARNING est émise. Antérieur à PHP 8.0.0, aucun diagnostic n'était émis pour les méthodes magiques __sleep(), __wakeup(), __serialize(), __unserialize(), et __set_state().
 Avertissement
