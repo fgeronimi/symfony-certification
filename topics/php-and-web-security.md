@@ -60,5 +60,59 @@ Closure::fromCallable — Convertis un callable en une fermeture
 ## PHP extensions
 - [Extensions (sorted by Membership) - php.net](http://php.net/manual/en/extensions.membership.php)
 
+Arrays
+
+Classes/Objects
+
+CSPRNG
+
+Date/Time
+
+Directories
+
+Error Handling
+
+Program execution
+
+Filesystem
+
+FastCGI Process Manager
+
+Function Handling
+
+Hash
+
+PHP Options/Info
+
+JSON
+
+Mail
+
+Math
+
+Misc.
+
+Network
+
+OPcache
+
+Output Control
+
+Password Hashing
+
+PCRE
+
+Reflection
+
+SPL
+
+Streams
+
+Strings
+
+URLs
+
+Variable handling
+
 ## SPL
 - [Standard PHP Library - php.net](http://php.net/book.spl)
