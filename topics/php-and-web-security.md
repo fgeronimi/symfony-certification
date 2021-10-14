@@ -116,3 +116,7 @@ Variable handling
 
 ## SPL
 - [Standard PHP Library - php.net](http://php.net/book.spl)
+
+La bibliothèque standard PHP (SPL) est une collection d'interfaces et de classes qui ont été créées afin de résoudre les problèmes communs.
+
+SPL fournit des structures de données, un ensemble d'itérateur pour traverser des objets, des interfaces, un ensemble d'exceptions standards ainsi qu'un certain nombre de classes pour travailler avec des fichiers. SPL fournit aussi un jeu de fonctions telle que spl_autoload_register().
