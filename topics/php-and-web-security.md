@@ -122,9 +122,16 @@ La bibliothèque standard PHP (SPL) est une collection d'interfaces et de classe
 SPL fournit des structures de données, un ensemble d'itérateur pour traverser des objets, des interfaces, un ensemble d'exceptions standards ainsi qu'un certain nombre de classes pour travailler avec des fichiers. SPL fournit aussi un jeu de fonctions telle que spl_autoload_register().
 
 La classe SplDoublyLinkedList fournit l'interface principale pour les listes doublement chaînées.
-SplDoublyLinkedList
-SplStack
-SplQueue
+SplDoublyLinkedList. 
+SplStack. 
+SplQueue. 
+
+Les tas sont des structures de type arbre, qui suivent une propriété caractéristique : chaque nœud est plus grand ou égal que ses enfants, lorsqu'on les compare avec la méthode implémentée de comparaison, qui est globale au tas.
+
+SplHeap. 
+SplMaxHeap. 
+SplMinHeap. 
+SplPriorityQueue. 
 
 La classe SplFixedArray fournit les fonctionnalités principales d'un tableau. La différence majeure entre un objet SplFixedArray et un tableau standard de PHP est que SplFixedArray doit être redimensionné manuellement, et n'utilise que des entier dans cette intervale pour les index. L'avantage est qu'il utilise moins de mémoire qu'un tableau standard.
 
