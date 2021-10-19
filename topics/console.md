@@ -28,3 +28,4 @@ title: Console - Symfony Certification Preparation List
 
 ## Verbosity levels
 - [Verbosity levels](https://symfony.com/doc/5.0/console/verbosity.html)
+The verbosity level can also be controlled globally for all commands with the SHELL_VERBOSITY environment variable (the -q and -v options still have more precedence over the value of SHELL_VERBOSITY):
