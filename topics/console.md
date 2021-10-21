@@ -6,6 +6,14 @@ title: Console - Symfony Certification Preparation List
 # Console
 - [The Console Component - symfony.com](https://symfony.com/doc/5.0/components/console.html)
 
+Defining the $defaultDescription static property instead of using the setDescription() method allows to get the command description without instantiating its class. This makes the php bin/console list command run much faster.
+
+If you want to always run the list command fast, add the --short option to it (php bin/console list --short). This will avoid instantiating command classes, but it won't show any description for commands that use the setDescription() method instead of the static property.
+
+The configure() method is called automatically at the end of the command constructor.
+
+Sections are created with the ConsoleOutput::section() method, which returns an instance of ConsoleSectionOutput
+
 ## Built-in commands
 - [Using Console Commands, Shortcuts and Built-in Commands - symfony.com](https://symfony.com/doc/5.0/components/console/usage.html)
 
