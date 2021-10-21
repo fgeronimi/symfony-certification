@@ -14,6 +14,15 @@ The configure() method is called automatically at the end of the command constru
 
 Sections are created with the ConsoleOutput::section() method, which returns an instance of ConsoleSectionOutput
 
+Commands have three lifecycle methods that are invoked when running the command:
+
+initialize() (optional)
+This method is executed before the interact() and the execute() methods. Its main purpose is to initialize variables used in the rest of the command methods.
+interact() (optional)
+This method is executed after initialize() and before execute(). Its purpose is to check if some of the options/arguments are missing and interactively ask the user for those values. This is the last place where you can ask for missing options/arguments. After this command, missing options/arguments will result in an error.
+execute() (required)
+This method is executed after interact() and initialize(). It contains the logic you want the command to execute and it must return an integer which will be used as the command exit status.
+
 ## Built-in commands
 - [Using Console Commands, Shortcuts and Built-in Commands - symfony.com](https://symfony.com/doc/5.0/components/console/usage.html)
 
