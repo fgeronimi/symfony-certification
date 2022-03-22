@@ -14,134 +14,144 @@ title: Symfony Architecture - Symfony Certification Preparation List
 
 ## Components
 - [Symfony Components - symfony.com](https://symfony.com/components)
-
 ```
 composer require symfony/xxxxxx 
 ```
-symfony/all-my-sms-notifier : symfony/all-my-sms-notifier  
-symfony/amazon-sns-notifier : symfony/amazon-sns-notifier  
-symfony/amazon-mailer : symfony/amazon-mailer  
-symfony/asset : symfony/asset  
-symfony/browser-kit : symfony/browser-kit  
-symfony/cache : symfony/cache  
-symfony/clickatell-notifier : symfony/clickatell-notifier  
-symfony/config : symfony/config  
-symfony/console" selected=" : symfony/console  
-symfony/contracts : symfony/contracts  
-symfony/crowdin-translation-provider : symfony/crowdin-translation-provider  
-symfony/css-selector : symfony/css-selector  
-symfony/dependency-injection : symfony/dependency-injection  
-symfony/discord-notifier : symfony/discord-notifier  
-symfony/dom-crawler : symfony/dom-crawler  
-symfony/dotenv : symfony/dotenv  
-symfony/error-handler : symfony/error-handler  
-symfony/esendex-notifier : symfony/esendex-notifier  
-symfony/event-dispatcher : symfony/event-dispatcher  
-symfony/expression-language : symfony/expression-language  
-symfony/fake-chat-notifier : symfony/fake-chat-notifier  
-symfony/fake-sms-notifier : symfony/fake-sms-notifier  
-symfony/filesystem : symfony/filesystem  
-symfony/finder : symfony/finder  
-symfony/firebase-notifier : symfony/firebase-notifier  
-symfony/form : symfony/form  
-symfony/free-mobile-notifier : symfony/free-mobile-notifier  
-symfony/gateway-api-notifier : symfony/gateway-api-notifier  
-symfony/gitter-notifier : symfony/gitter-notifier  
-symfony/google-chat-notifier : symfony/google-chat-notifier  
-symfony/google-mailer : symfony/google-mailer  
-symfony/security-guard : symfony/security-guard  
-symfony/http-client : symfony/http-client  
-symfony/http-foundation : symfony/http-foundation  
-symfony/http-kernel : symfony/http-kernel  
-symfony/infobip-notifier : symfony/infobip-notifier  
-symfony/intl : symfony/intl  
-symfony/iqsms-notifier : symfony/iqsms-notifier  
-symfony/ldap : symfony/ldap  
-symfony/light-sms-notifier : symfony/light-sms-notifier  
-symfony/linked-in-notifier : symfony/linked-in-notifier  
-symfony/lock : symfony/lock  
-symfony/loco-translation-provider : symfony/loco-translation-provider  
-symfony/lokalise-translation-provider : symfony/lokalise-translation-provider  
-symfony/mailchimp-mailer : symfony/mailchimp-mailer  
-symfony/mailer : symfony/mailer  
-symfony/mailgun-mailer : symfony/mailgun-mailer  
-symfony/mailjet-mailer : symfony/mailjet-mailer  
-symfony/mailjet-notifier : symfony/mailjet-notifier  
-symfony/mattermost-notifier : symfony/mattermost-notifier  
-symfony/mercure-notifier : symfony/mercure-notifier  
-symfony/message-bird-notifier : symfony/message-bird-notifier  
-symfony/message-media-notifier : symfony/message-media-notifier  
-symfony/messenger : symfony/messenger  
-symfony/microsoft-teams-notifier : symfony/microsoft-teams-notifier  
-symfony/mime : symfony/mime  
-symfony/mobyt-notifier : symfony/mobyt-notifier  
-symfony/nexmo-notifier : symfony/nexmo-notifier  
-symfony/notifier : symfony/notifier  
-symfony/octopush-notifier : symfony/octopush-notifier  
-symfony/oh-my-smtp-mailer : symfony/oh-my-smtp-mailer  
-symfony/options-resolver : symfony/options-resolver  
-symfony/ovh-cloud-notifier : symfony/ovh-cloud-notifier  
-symfony/phpunit-bridge : symfony/phpunit-bridge  
-symfony/password-hasher : symfony/password-hasher  
-symfony/polyfill-apcu : symfony/polyfill-apcu  
-symfony/polyfill-ctype : symfony/polyfill-ctype  
-symfony/polyfill-iconv : symfony/polyfill-iconv  
-symfony/polyfill-intl-grapheme : symfony/polyfill-intl-grapheme  
-symfony/polyfill-intl-icu : symfony/polyfill-intl-icu  
-symfony/polyfill-intl-idn : symfony/polyfill-intl-idn  
-symfony/polyfill-intl-messageformatter : symfony/polyfill-intl-messageformatter  
-symfony/polyfill-intl-normalizer : symfony/polyfill-intl-normalizer  
-symfony/polyfill-mbstring : symfony/polyfill-mbstring  
-symfony/polyfill-php54 : symfony/polyfill-php54  
-symfony/polyfill-php55 : symfony/polyfill-php55  
-symfony/polyfill-php56 : symfony/polyfill-php56  
-symfony/polyfill-php70 : symfony/polyfill-php70  
-symfony/polyfill-php71 : symfony/polyfill-php71  
-symfony/polyfill-php72 : symfony/polyfill-php72  
-symfony/polyfill-php73 : symfony/polyfill-php73  
-symfony/polyfill-php74 : symfony/polyfill-php74  
-symfony/polyfill-php80 : symfony/polyfill-php80  
-symfony/polyfill-php81 : symfony/polyfill-php81  
-symfony/polyfill-uuid : symfony/polyfill-uuid  
-symfony/polyfill-util : symfony/polyfill-util  
-symfony/postmark-mailer : symfony/postmark-mailer  
-symfony/process : symfony/process  
-symfony/property-access : symfony/property-access  
-symfony/property-info : symfony/property-info  
-symfony/rate-limiter : symfony/rate-limiter  
-symfony/rocket-chat-notifier : symfony/rocket-chat-notifier  
-symfony/routing : symfony/routing  
-symfony/runtime : symfony/runtime  
-symfony/smsapi-notifier : symfony/smsapi-notifier  
-symfony/smsc-notifier : symfony/smsc-notifier  
-symfony/security : symfony/security  
-symfony/semaphore : symfony/semaphore  
-symfony/sendgrid-mailer : symfony/sendgrid-mailer  
-symfony/sendinblue-mailer : symfony/sendinblue-mailer  
-symfony/sendinblue-notifier : symfony/sendinblue-notifier  
-symfony/serializer : symfony/serializer  
-symfony/sinch-notifier : symfony/sinch-notifier  
-symfony/slack-notifier : symfony/slack-notifier  
-symfony/sms-biuras-notifier : symfony/sms-biuras-notifier  
-symfony/spot-hit-notifier : symfony/spot-hit-notifier  
-symfony/stopwatch : symfony/stopwatch  
-symfony/string : symfony/string  
-symfony/telegram-notifier : symfony/telegram-notifier  
-symfony/telnyx-notifier : symfony/telnyx-notifier  
-symfony/templating : symfony/templating  
-symfony/translation : symfony/translation  
-symfony/turbo-sms-notifier : symfony/turbo-sms-notifier  
-symfony/twilio-notifier : symfony/twilio-notifier  
-symfony/uid : symfony/uid  
-symfony/validator : symfony/validator  
-symfony/var-dumper : symfony/var-dumper  
-symfony/var-exporter : symfony/var-exporter  
-symfony/web-link : symfony/web-link  
-symfony/webpack-encore : symfony/webpack-encore  
-symfony/workflow : symfony/workflow  
-symfony/yaml : symfony/yaml  
-symfony/yunpian-notifier : symfony/yunpian-notifier  
-symfony/zulip-notifier : symfony/zulip-notifier  
+**Base :**
+- **symfony/asset** : Manages URL generation and versioning of web assets such as CSS stylesheets, JavaScript files and image files.  
+- **symfony/browser-kit** : Simulates the behavior of a web browser.
+- **symfony/cache** : Implements PSR-6 and PSR-16 caching mechanisms and provides adapters for popular caching backends (Redis, Memcache, APCu, etc.)  
+- **symfony/config** : Helps you find, load, combine, autofill and validate configuration values.  
+- **symfony/console** : Eases the creation of beautiful and testable command line interfaces.  
+- symfony/contracts : A set of abstractions extracted out of the Symfony components.  
+- symfony/crowdin-translation-provider : Provides Crowdin integration for Symfony Translation.  
+- symfony/css-selector : Converts CSS selectors to XPath expressions.  
+- **symfony/dependency-injection** : Allows you to standardize and centralize the way objects are constructed in your application.  
+- **symfony/dom-crawler** : Eases DOM navigation for **HTML and XML documents**.  
+- **symfony/dotenv** : Parses .env files to make environment variables stored in them accessible via **getenv(), $_ENV or $_SERVER**.  
+- **symfony/error-handler** : Provides tools to manage errors and ease debugging PHP code.  
+- **symfony/event-dispatcher** : Implements the **Mediator pattern** in a simple and effective way to make projects truly extensible.  
+- **symfony/expression-language** : Provides an engine that can compile and evaluate expressions.  
+- **symfony/filesystem** : Provides basic utilities for the filesystem.  
+- **symfony/finder** : Finds files and directories via an intuitive fluent interface.  
+- **symfony/form** : Provides tools to easy creating, processing and reusing HTML forms.  
+- symfony/security-guard : Brings many layers of authentication together, making it much easier to create complex authentication systems where you have total control.  
+- **symfony/http-client** : A low-level HTTP client with support for both **PHP stream wrappers and cURL**. It also provides utilities **to consume APIs**.  
+- **symfony/http-foundation** : Defines an object-oriented layer for the HTTP specification.  
+- **symfony/http-kernel** : Provides the building blocks to create flexible and fast HTTP-based frameworks.  
+- symfony/intl : Provides fallback code to handle cases when the intl extension is missing.  
+- **symfony/ldap** : Provides an LDAP client for PHP on top of PHP's ldap extension.  
+- **symfony/lock** : Creates and manages locks, a **mechanism to provide exclusive access to a shared resource**.  
+- symfony/loco-translation-provider : Provides Loco integration for Symfony Translation.  
+- symfony/lokalise-translation-provider : Provides Lokalise integration for Symfony Translation.  
+- **symfony/messenger** : Helps applications **send and receive messages to/from other applications or via message queues**.  
+- symfony/mime : Allows manipulating MIME messages, used to create advanced email messages.  
+- **symfony/options-resolver** : Helps you configuring objects with **option arrays**.  
+- **symfony/phpunit-bridge** : Provides utilities to report legacy tests and usage of deprecated code and a helper for time-sensitive tests.  
+- **symfony/password-hasher : Provides secure password hashing utilities.  
+- symfony/process : Executes commands in sub-processes.  
+- **symfony/property-access** : Provides function to read and write from/to an object or array using a simple string notation.  
+- **symfony/property-info** : Extracts information about the properties of PHP classes using **metadata of popular sources** (Doctrine, PHP Reflection, PHPdoc, etc.)  
+- **symfony/rate-limiter** : Provides a **Token Bucket implementation** to rate limit input and output in your application (e.g. to implement login throttling).  
+- **symfony/routing** : Maps an HTTP request to a set of configuration variables.  
+- symfony/runtime : Decouples the bootstrapping logic from any global state to make sure the application can run with runtimes like PHP-FPM, ReactPHP, Swoole, etc. without any changes.  
+- **symfony/security** : Provides an infrastructure for sophisticated authorization systems.  
+- **symfony/semaphore** : Creates and manages semaphores, a mechanism to control access to a **common resource by multiple processes** in a **concurrent system**.  
+- **symfony/serializer** : Turns objects into a **specific format (XML, JSON, Yaml, ...) and the other way around**.  
+- **symfony/stopwatch** : Provides a way to profile code.  
+- **symfony/string** : Provides an object-oriented API to strings and deals with bytes, UTF-8 code points and grapheme clusters in a unified way. It also provides a **slugger** and an **inflector**.  
+- symfony/templating : Provides all the tools needed to build any kind of template system.  
+- **symfony/translation** : Provides tools to internationalize your application.  
+- **symfony/uid** : Provides tools to work with unique identifiers such as **UUIDs and ULIDs**.  
+- **symfony/validator** : Provides tools to validate classes.  
+- **symfony/var-dumper** : Provides mechanisms for walking through any arbitrary PHP variable.  
+- symfony/var-exporter : Exports any serializable PHP data structure to plain PHP code and allows to instantiate and populate objects without calling their constructors.  
+- symfony/web-link : Implements HTML5 Links, Preload and Resource Hints specifications to advise clients (browsers) to preload and prefetch documents through HTTP and HTTP/2 pushes.  
+- symfony/webpack-encore : symfony/webpack-encore  
+- **symfony/workflow** : Provides tools for managing a **workflow** or **finite state machine**.  
+- **symfony/yaml** : Loads and dumps YAML files.  
+
+**Mailer :**
+- **symfony/mailer** : Helps sending emails and provides integration with the most popular mailing services.  
+- symfony/amazon-mailer : Provides Amazon SES integration for Symfony Mailer.
+- symfony/google-mailer : symfony/google-mailer  
+- symfony/mailchimp-mailer : symfony/mailchimp-mailer  
+- symfony/mailgun-mailer : symfony/mailgun-mailer  
+- symfony/mailjet-mailer : symfony/mailjet-mailer  
+- symfony/oh-my-smtp-mailer : symfony/oh-my-smtp-mailer  
+- symfony/postmark-mailer : symfony/postmark-mailer  
+- symfony/sendgrid-mailer : Provides Sendgrid integration for Symfony Mailer.  
+- symfony/sendinblue-mailer : symfony/sendinblue-mailer  
+
+**Notifier :**
+- **symfony/notifier** : Sends notifications via one or more channels (email, SMS, Slack, Telegram, ...)  
+- symfony/all-my-sms-notifier : symfony/all-my-sms-notifier  
+- symfony/amazon-sns-notifier : symfony/amazon-sns-notifier  
+- symfony/clickatell-notifier : symfony/clickatell-notifier  
+- symfony/discord-notifier : symfony/discord-notifier  
+- symfony/esendex-notifier : symfony/esendex-notifier  
+- symfony/fake-chat-notifier : Provides Fake Chat integration for Symfony Notifier. 
+- symfony/fake-sms-notifier : Provides Fake SMS integration for Symfony Notifier.  
+- symfony/firebase-notifier : symfony/firebase-notifier  
+- symfony/free-mobile-notifier : symfony/free-mobile-notifier  
+- symfony/gateway-api-notifier : symfony/gateway-api-notifier  
+- symfony/gitter-notifier : symfony/gitter-notifier  
+- symfony/google-chat-notifier : symfony/google-chat-notifier  
+- symfony/infobip-notifier : symfony/infobip-notifier  
+- symfony/iqsms-notifier : symfony/iqsms-notifier  
+- symfony/light-sms-notifier : symfony/light-sms-notifier  
+- symfony/linked-in-notifier : symfony/linked-in-notifier  
+- symfony/mailjet-notifier : symfony/mailjet-notifier  
+- symfony/mattermost-notifier : symfony/mattermost-notifier  
+- symfony/mercure-notifier : symfony/mercure-notifier  
+- symfony/message-bird-notifier : symfony/message-bird-notifier  
+- symfony/message-media-notifier : symfony/message-media-notifier  
+- symfony/microsoft-teams-notifier : symfony/microsoft-teams-notifier  
+- symfony/mobyt-notifier : symfony/mobyt-notifier  
+- symfony/nexmo-notifier : symfony/nexmo-notifier  
+- symfony/octopush-notifier : symfony/octopush-notifier  
+- symfony/ovh-cloud-notifier : symfony/ovh-cloud-notifier 
+- symfony/rocket-chat-notifier : symfony/rocket-chat-notifier  
+- symfony/smsapi-notifier : symfony/smsapi-notifier  
+- symfony/smsc-notifier : symfony/smsc-notifier  
+- symfony/sendinblue-notifier : symfony/sendinblue-notifier 
+- symfony/sinch-notifier : symfony/sinch-notifier  
+- symfony/slack-notifier : symfony/slack-notifier  
+- symfony/sms-biuras-notifier : symfony/sms-biuras-notifier  
+- symfony/spot-hit-notifier : symfony/spot-hit-notifier  
+- symfony/telegram-notifier : symfony/telegram-notifier  
+- symfony/telnyx-notifier : symfony/telnyx-notifier  
+- symfony/turbo-sms-notifier : symfony/turbo-sms-notifier  
+- symfony/twilio-notifier : symfony/twilio-notifier  
+- symfony/yunpian-notifier : symfony/yunpian-notifier  
+- symfony/zulip-notifier : symfony/zulip-notifier  
+
+**Polyfill :**  
+- symfony/polyfill-apcu : symfony/polyfill-apcu  
+- symfony/polyfill-ctype : symfony/polyfill-ctype  
+- symfony/polyfill-iconv : symfony/polyfill-iconv  
+- symfony/polyfill-intl-grapheme : symfony/polyfill-intl-grapheme  
+- symfony/polyfill-intl-icu : symfony/polyfill-intl-icu  
+- symfony/polyfill-intl-idn : symfony/polyfill-intl-idn  
+- symfony/polyfill-intl-messageformatter : symfony/polyfill-intl-messageformatter  
+- symfony/polyfill-intl-normalizer : symfony/polyfill-intl-normalizer  
+- symfony/polyfill-mbstring : Provides a partial, native PHP implementation for the Mbstring extension.    
+- symfony/polyfill-php54 : symfony/polyfill-php54  
+- symfony/polyfill-php55 : symfony/polyfill-php55  
+- symfony/polyfill-php56 : symfony/polyfill-php56  
+- symfony/polyfill-php70 : symfony/polyfill-php70  
+- symfony/polyfill-php71 : symfony/polyfill-php71  
+- symfony/polyfill-php72 : symfony/polyfill-php72  
+- symfony/polyfill-php73 : symfony/polyfill-php73  
+- symfony/polyfill-php74 : symfony/polyfill-php74  
+- symfony/polyfill-php80 : symfony/polyfill-php80  
+- symfony/polyfill-php81 : symfony/polyfill-php81  
+- symfony/polyfill-uuid : symfony/polyfill-uuid  
+- symfony/polyfill-util : symfony/polyfill-util  
+  
+
+
+
 
 
 
