@@ -41,11 +41,11 @@ Si des déclarations de types sont utilisé dans la définition d'une méthode m
 - [Anonymous functions - php.net](http://php.net/manual/en/functions.anonymous.php)
 - [Closure - php.net](http://php.net/manual/en/class.closure.php)
 
-Closure::__construct — Constructeur empêchant l'instanciation
-Closure::bind — Duplique une fermeture avec un nouvel objet lié et un nouveau contexte de classe.
-Closure::bindTo — Duplique la fermeture avec un nouvel objet lié et un nouveau contexte de classe.
-Closure::call — Lie et appelle la fermeture
-Closure::fromCallable — Convertis un callable en une fermeture
+Closure::__construct — Constructeur empêchant l'instanciation  
+Closure::bind — Duplique une fermeture avec un nouvel objet lié et un nouveau contexte de classe.  
+Closure::bindTo — Duplique la fermeture avec un nouvel objet lié et un nouveau contexte de classe.   
+Closure::call — Lie et appelle la fermeture  
+Closure::fromCallable — Convertis un callable en une fermeture  
 
 ## Abstract classes
 - [Class Abstraction - php.net](http://php.net/manual/en/language.oop5.abstract.php)
