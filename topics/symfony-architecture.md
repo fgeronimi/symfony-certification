@@ -7,10 +7,10 @@ title: Symfony Architecture - Symfony Certification Preparation List
 
 ## Symfony Flex
 - [Symfony 5.0 Documentation - symfony.com](https://symfony.com/doc/5.0/index.html)
-- [Using Symfony Flex to Manage Symfony Applications - symfony.com](https://symfony.com/doc/5.0/setup/flex.html)
+- [Using Symfony Flex to Manage Symfony Applications - symfony.com](https://symfony.com/doc/6.0/setup/flex.html)
 
 ## License
-- [Symfony License - symfony.com](https://symfony.com/doc/5.0/contributing/code/license.html)
+- [Symfony License - symfony.com](https://symfony.com/doc/6.0/contributing/code/license.html)
 
 ## Components
 - [Symfony Components - symfony.com](https://symfony.com/components)
@@ -19,10 +19,10 @@ title: Symfony Architecture - Symfony Certification Preparation List
 - [What are symfony bridges, bundles and vendor? - stackoverflow.com](https://stackoverflow.com/questions/11888522/what-are-symfony-bridges-bundles-and-vendor)
 
 ## Code organization
-- [Organizing Your Business Logic - symfony.com](https://symfony.com/doc/5.0/best_practices/business-logic.html)
+- [Organizing Your Business Logic - symfony.com](https://symfony.com/doc/6.0/best_practices/business-logic.html)
 
 ## Request handling
-- [Symfony and HTTP Fundamentals - symfony.com](https://symfony.com/doc/5.0/introduction/http_fundamentals.html)
+- [Symfony and HTTP Fundamentals - symfony.com](https://symfony.com/doc/6.0/introduction/http_fundamentals.html)
 
 ## Exception handling
 - [How to Customize Error Pages - symfony.com](https://symfony.com/doc/5.0/controller/error_pages.html)
