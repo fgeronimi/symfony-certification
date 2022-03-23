@@ -5,10 +5,7 @@ permalink: /
 
 # Symfony Certification Preparation List
 
-*I unfortunately do not have the time to get this project fully updated. Any pull requests are appreciated and will still be reviewed & merged. If somebody would like to completely take over this project, feel free to create an issue.*
-
-When looking for a guide to prepare myself for a Symfony certification, I couldn't find a lot. So I've decided to start
-this project to help people find everything they need.
+Based on https://thomasberends.github.io/symfony-certification-preparation-list/, trying to adapt it for the 6.0 certification
 
 If you're looking for other people who are interested (or have) certification. Please check the #certification channel
 at the Symfony Devs Slack. [Request an invite here](https://symfony.com/slack-invite)
@@ -17,7 +14,7 @@ Please help add new links/info. We currently have not all topics covered. For mo
 [Contributing page](contributing.md).
 
 The exam topics are copied from the [official exam topics](https://certification.symfony.com/). The master branch
-contains information for the 5.0 certification. 
+contains information for the 6.0 certification. 
 
 ## Table of Contents
 
