@@ -8,6 +8,31 @@ title: Symfony Architecture - Symfony Certification Preparation List
 ## Symfony Flex
 - [Symfony 5.0 Documentation - symfony.com](https://symfony.com/doc/5.0/index.html)
 - [Using Symfony Flex to Manage Symfony Applications - symfony.com](https://symfony.com/doc/6.0/setup/flex.html)
+```
+composer require symfony/flex
+```
+Symfony Flex recommends that applications use the following directory structure :
+```
+your-project/
+├── assets/
+├── bin/
+│   └── console
+├── config/
+│   ├── bundles.php
+│   ├── packages/
+│   ├── routes.yaml
+│   └── services.yaml
+├── public/
+│   └── index.php
+├── src/
+│   ├── ...
+│   └── Kernel.php
+├── templates/
+├── tests/
+├── translations/
+├── var/
+└── vendor/
+```
 
 ## License
 - [Symfony License - symfony.com](https://symfony.com/doc/6.0/contributing/code/license.html)
