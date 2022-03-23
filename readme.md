@@ -83,6 +83,7 @@ contains information for the 6.0 certification.
     - [User's locale guessing](/topics/routing.md#users-locale-guessing)
     - [Router debugging](/topics/routing.md#router-debugging)
 - [Templating with Twig](/topics/templating-with-twig.md)
+    - [Twig syntax up to 3.3 version](/topics/templating-with-twig.md#twig-syntax-up-to-33-version) 
     - [Auto escaping](/topics/templating-with-twig.md#auto-escaping)
     - [Template inheritance](/topics/templating-with-twig.md#template-inheritance)
     - [Global variables](/topics/templating-with-twig.md#global-variables)
