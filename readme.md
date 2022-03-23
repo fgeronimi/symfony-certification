@@ -22,7 +22,7 @@ contains information for the 5.0 certification.
 ## Table of Contents
 
 - [PHP and Web Security](/topics/php-and-web-security.md)
-    - [PHP API up to PHP 7.2 version](/topics/php-and-web-security.md#php-api-up-to-php-72-version)
+    - [PHP API up to PHP 8.1 version](/topics/php-and-web-security.md#php-api-up-to-php-81-version)
     - [Object Oriented Programming](/topics/php-and-web-security.md#object-oriented-programming)
     - [Namespaces](/topics/php-and-web-security.md#namespaces)
     - [Interfaces](/topics/php-and-web-security.md#interfaces)
