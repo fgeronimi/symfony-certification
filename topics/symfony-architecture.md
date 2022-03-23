@@ -6,11 +6,17 @@ title: Symfony Architecture - Symfony Certification Preparation List
 # Symfony Architecture
 
 ## Symfony Flex
-- [Symfony 5.0 Documentation - symfony.com](https://symfony.com/doc/5.0/index.html)
+- [Symfony 6.0 Documentation - symfony.com](https://symfony.com/doc/6.0/index.html)
 - [Using Symfony Flex to Manage Symfony Applications - symfony.com](https://symfony.com/doc/6.0/setup/flex.html)
 ```
 composer require symfony/flex
 ```
+From a technical point of view, Symfony Flex is just a **Composer plugin**. It hooks on Composer events whenever you run a command that installs, updates or removes a PHP package or Symfony bundle.
+
+Flex will take care of registering the bundle in the **Symfony kernel**, providing **a default configuration**, loading the **necessary routes**, **etc.**  
+
+For exemple, the single Composer command ```composer require api-platform``` will have been enough for you to set up a functional REST API and its swagger/openapi documentation.
+
 Symfony Flex recommends that applications use the following directory structure :
 ```
 your-project/
