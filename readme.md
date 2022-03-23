@@ -170,7 +170,7 @@ contains information for the 6.0 certification.
     - [Error handling](/topics/miscellaneous.md#error-handling)
     - [Code debugging](/topics/miscellaneous.md#code-debugging)
     - [Deployment best practices](/topics/miscellaneous.md#deployment-best-practices)
-    - [Process and Serializer components](/topics/miscellaneous.md#process-and-serializer-components)
+    - [Cache, Process and Serializer components (add cache)](/topics/miscellaneous.md#process-and-serializer-components)
     - [Messenger component](/topics/miscellaneous.md#messenger-component)
     - [Mime and Mailer components](/topics/miscellaneous.md#mime-and-mailer-components)
     - [Filesystem and Finder components](/topics/miscellaneous.md#filesystem-and-finder-components)
