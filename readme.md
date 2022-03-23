@@ -5,7 +5,7 @@ permalink: /
 
 # Symfony Certification Preparation List
 
-Based on https://thomasberends.github.io/symfony-certification-preparation-list/, trying to adapt it for the 6.0 certification
+Forked from [ThomasBerends/symfony-certification-preparation-list](https://thomasberends.github.io/symfony-certification-preparation-list/), trying to adapt it for the 6.0 certification
 
 If you're looking for other people who are interested (or have) certification. Please check the #certification channel
 at the Symfony Devs Slack. [Request an invite here](https://symfony.com/slack-invite)
