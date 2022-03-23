@@ -177,3 +177,4 @@ contains information for the 6.0 certification.
     - [Lock component](/topics/miscellaneous.md#lock-component)
     - [Web Profiler, Web Debug Toolbar and Data collectors](/topics/miscellaneous.md#web-profiler-and-web-debug-toolbar)
     - [Internationalization and localization (and Intl component)](/topics/miscellaneous.md#internationalization-and-localization-and-intl-component)
+    - Runtime component
