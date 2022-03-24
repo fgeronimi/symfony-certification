@@ -10,14 +10,14 @@ title: Controllers - Symfony Certification Preparation List
 - [Controller Naming Pattern - symfony.com](https://symfony.com/doc/5.0/routing.html#controller-naming-pattern)
 
 ## The base AbstractController class
-- [AbstractController.php - github.com](https://github.com/symfony/symfony/blob/5.0/src/Symfony/Bundle/FrameworkBundle/Controller/AbstractController.php)
+- [AbstractController.php - github.com](https://github.com/symfony/symfony/blob/6.0/src/Symfony/Bundle/FrameworkBundle/Controller/AbstractController.php)
 
 ## The request
-- [The Request and Response Object - symfony.com](https://symfony.com/doc/5.0/controller.html#the-request-and-response-object)
-- [Request.php - github.com](https://github.com/symfony/http-foundation/blob/5.0/Request.php)
+- [The Request and Response Object - symfony.com](https://symfony.com/doc/6.0/controller.html#the-request-and-response-object)
+- [Request.php - github.com](https://github.com/symfony/http-foundation/blob/6.0/Request.php)
 
 ## The response
-- [Response.php - github.com](https://github.com/symfony/http-foundation/blob/5.0/Response.php)
+- [Response.php - github.com](https://github.com/symfony/http-foundation/blob/6.0/Response.php)
 
 ## The cookies
 - [The HttpFoundation Component - symfony.com](https://symfony.com/doc/5.0/components/http_foundation.html)
