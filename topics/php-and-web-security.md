@@ -59,10 +59,12 @@ Closure::fromCallable — Convertis un callable en une fermeture
 
 ## Exception and error handling
 - [Exception (class) - php.net](http://php.net/manual/en/class.exception.php)
-- [Exceptions - php.net](http://php.net/manual/en/language.exceptions.php)
+- [Exceptions - php.net](http://php.net/manual/fr/language.exceptions.php)
 
 ## Traits
-- [Traits - php.net](http://php.net/manual/en/language.oop5.traits.php)
+- [Traits - php.net](http://php.net/manual/fr/language.oop5.traits.php)
+
+Une méthode héritée depuis une classe mère est écrasée par une méthode issue d'un Trait. L'ordre de précédence fait en sorte que les méthodes de la classe courante écrasent les méthodes issues d'un Trait, elles-mêmes surchargeant les méthodes héritées.
 
 ## PHP extensions
 - [Extensions (sorted by Membership) - php.net](http://php.net/manual/en/extensions.membership.php)
