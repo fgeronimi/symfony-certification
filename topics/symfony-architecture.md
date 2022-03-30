@@ -208,9 +208,82 @@ If you need total control of **exception handling to run your own logic** use th
 
 
 ## Event dispatcher and kernel events
-- [Symfony Framework Events - symfony.com](https://symfony.com/doc/5.0/reference/events.html)
-- [The HttpKernel Component - symfony.com](https://symfony.com/doc/5.0/components/http_kernel.html)
-- [The EventDispatcher Component - symfony.com](https://symfony.com/doc/5.0/components/event_dispatcher.html)
+- [Symfony Framework Events - symfony.com](https://symfony.com/doc/6.0/reference/events.html)
+- [The HttpKernel Component - symfony.com](https://symfony.com/doc/6.0/components/http_kernel.html)
+- [The EventDispatcher Component - symfony.com](https://symfony.com/doc/6.0/components/event_dispatcher.html)
+
+
+
+**Kernel Events :**
+
+
+|Name   |KernelEvents Constant  | Argument passed to the listener  |
+|---|---|---|
+|kernel.request|	KernelEvents::REQUEST|	RequestEvent|
+|kernel.controller	|KernelEvents::CONTROLLER	|ControllerEvent|
+|kernel.controller_arguments|	KernelEvents::CONTROLLER_ARGUMENTS|	ControllerArgumentsEvent|
+|kernel.view	|KernelEvents::VIEW|	ViewEvent|
+|kernel.response	|KernelEvents::RESPONSE	|ResponseEvent|
+|kernel.finish_request|	KernelEvents::FINISH_REQUEST|	FinishRequestEvent|
+|kernel.terminate|	KernelEvents::TERMINATE|	TerminateEvent|
+|kernel.exception|	KernelEvents::EXCEPTION|	ExceptionEvent|
+
+Execute this command to find out which listeners are registered for this event and their priorities:
+```
+php bin/console debug:event-dispatcher kernel.xxxxv
+```
+
+**The Workflow of a Request :**  
+
+Every HTTP web interaction begins with a request and ends with a response. Your job as a developer is to create PHP code that reads the request information (e.g. the URL) and creates and returns a response (e.g. an HTML page or JSON string). This is a simplified overview of the request workflow in Symfony applications:  
+
+- The user asks for a resource in a browser;
+- The browser sends a request to the server;
+- Symfony gives the application a Request object;
+- The application generates a Response object using the data of the Request object;
+- The server sends back the response to the browser;
+- The browser displays the resource to the user.
+
+Internally, ```HttpKernel::handle()``` - the concrete implementation of ```HttpKernelInterface::handle()``` - defines a **workflow** that starts with a **Request** and ends with a **Response**.
+
+![http_kernel](https://symfony.com/doc/current/_images/components/http_kernel/http-workflow.svg)
+
+The exact details of this workflow are the key to understanding how the kernel (and the Symfony Framework or any other library that uses the kernel) works.
+
+1) The kernel.request Event
+2) Resolve the Controller
+3) The kernel.controller Event
+4) Getting the Controller Arguments
+5) Calling the Controller
+6) The kernel.view Event
+7) The kernel.response Event
+8) The kernel.terminate Event
+Handling Exceptions: the kernel.exception Event
+
+
+**Sub Requests :**  
+
+In addition to the "main" request that's sent into HttpKernel::handle(), you can also send a so-called "sub request". A sub request looks and acts like any other request, but typically serves to render just one small portion of a page instead of a full page. You'll most commonly make sub-requests from your controller (or perhaps from inside a template, that's being rendered by your controller).
+
+To execute a sub request, use HttpKernel::handle(), but **change the second argument** as follows:
+
+```
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+
+// ...
+
+// create some other request manually as needed
+$request = new Request();
+// for example, possibly set its _controller manually
+$request->attributes->set('_controller', '...');
+
+$response = $kernel->handle($request, HttpKernelInterface::SUB_REQUEST);
+// do something with this response
+```
+
+This creates another full request-response cycle where this new ```Request``` is transformed into a ```Response```. **The only difference internally is that some listeners (e.g. security) may only act upon the main request**. Each listener is passed some subclass of KernelEvent, whose **isMainRequest()** method can be used to check if the current request is a "main" or "sub" request.
+
 
 ## Official best practices
 - [Symfony Best Practices - symfony.com](https://symfony.com/doc/5.0/best_practices/index.html)
