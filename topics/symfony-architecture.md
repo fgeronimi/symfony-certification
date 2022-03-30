@@ -197,7 +197,15 @@ composer require symfony/xxxxxx
 - [Symfony and HTTP Fundamentals - symfony.com](https://symfony.com/doc/6.0/introduction/http_fundamentals.html)
 
 ## Exception handling
-- [How to Customize Error Pages - symfony.com](https://symfony.com/doc/5.0/controller/error_pages.html)
+- [How to Customize Error Pages - symfony.com](https://symfony.com/doc/6.0/controller/error_pages.html)
+
+Error pages for the production environment can be customized in different ways depending on your needs:
+
+If you only want to change **the contents and styles of the error pages to match the rest of your application**, override the **default error templates**;
+If you want to change the **contents of non-HTML error output**, create a **new normalizer;**
+If you also want to **tweak the logic used by Symfony to generate error pages**, override **the default error controller;**
+If you need total control of **exception handling to run your own logic** use the **kernel.exception event**.
+
 
 ## Event dispatcher and kernel events
 - [Symfony Framework Events - symfony.com](https://symfony.com/doc/5.0/reference/events.html)
