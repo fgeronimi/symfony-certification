@@ -295,7 +295,24 @@ This creates another full request-response cycle where this new ```Request``` is
 - [Our Backwards Compatibility Promise - symfony.com](https://symfony.com/doc/5.0/contributing/code/bc.html)
 
 ## Deprecations best practices
-- [Deprecations - symfony.com](https://symfony.com/doc/5.0/contributing/code/conventions.html#deprecations)
+- [Deprecations - symfony.com](https://symfony.com/doc/6.0/contributing/code/conventions.html#deprecations)
+
+A feature is marked as deprecated by adding a @deprecated PHPDoc to relevant classes, methods, properties, ...,  
+The deprecation message must indicate the version in which the feature was deprecated, and whenever possible, how it was replaced,  
+When the replacement is in another namespace than the deprecated class, its FQCN must be used,  
+```
+/**
+ * @deprecated since Symfony 5.1, use A\B\Replacement instead.
+ */
+ ```
+A deprecation must also be triggered to help people with the migration (requires the symfony/deprecation-contracts package):
+
+```
+trigger_deprecation('symfony/package-name', '5.1', 'The "%s" class is deprecated, use "%s" instead.', Deprecated::class, Replacement::class);
+```
+
+When deprecating a whole class the trigger_deprecation() call should be placed after the use declarations.
+
 
 ## Framework overloading
 
@@ -311,4 +328,28 @@ This creates another full request-response cycle where this new ```Request``` is
 - [PSR-4: Autoloader - php-fig.org](http://www.php-fig.org/psr/psr-4/)
 
 ## Naming conventions
-- [Method Names - symfony.com](https://symfony.com/doc/5.0/contributing/code/conventions.html#method-names)
+- [Method Names - symfony.com](https://symfony.com/doc/6.0/contributing/code/conventions.html#method-names)
+- [Conventions - symfony.com](https://symfony.com/doc/6.0/contributing/code/standards.html)
+
+Naming Conventions
+- Use camelCase for PHP variables, function and method names, arguments (e.g. $acceptableContentTypes, hasSession());
+- Use snake_case for configuration parameters and Twig template variables (e.g. framework.csrf_protection, http_status_code);
+- Use SCREAMING_SNAKE_CASE for constants (e.g. InputArgument::IS_ARRAY);
+- Use UpperCamelCase for enumeration cases (e.g. InputArgumentMode::IsArray);
+- Use namespaces for all PHP classes, interfaces, traits and enums and UpperCamelCase for their names (e.g. ConsoleLogger);
+- Prefix all abstract classes with Abstract except PHPUnit \*TestCase. Please note some early Symfony classes do not follow this convention and have not been renamed for backward compatibility reasons. However, all new abstract classes must follow this naming convention;
+- Suffix interfaces with Interface;
+- Suffix traits with Trait;
+- Don't use a dedicated suffix for classes or enumerations (e.g. like Class or Enum), except for the cases listed below.
+- Suffix exceptions with Exception;
+- Prefix PHP attributes with As where applicable (e.g. #[AsCommand] instead of #[Command], but #[When] is kept as-is);
+- Use UpperCamelCase for naming PHP files (e.g. EnvVarProcessor.php) and snake case for naming Twig templates and web assets (section_layout.html.twig, index.scss);
+- For type-hinting in PHPDocs and casting, use bool (instead of boolean or Boolean), int (instead of integer), float (instead of double or real);
+- Don't forget to look at the more verbose Conventions document for more subjective naming considerations.
+
+Service Naming Conventions
+- A service name must be the same as the fully qualified class name (FQCN) of its class (e.g. App\EventSubscriber\UserSubscriber);
+- If there are multiple services for the same class, use the FQCN for the main service and use lowercase and underscored names for the rest of services. Optionally divide them in groups separated with dots (e.g. something.service_name, fos_user.something.service_name);
+- Use lowercase letters for parameter names (except when referring to environment variables with the %env(VARIABLE_NAME)% syntax);
+- Add class aliases for public services (e.g. alias Symfony\Component\Something\ClassName to something.service_name).
+
