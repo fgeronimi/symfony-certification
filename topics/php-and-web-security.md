@@ -57,17 +57,17 @@ Si des déclarations de types sont utilisé dans la définition d'une méthode m
 
 Les fonctions anonymes, aussi appelées fermetures ou closures permettent la création de fonctions sans préciser leur nom. Elles sont particulièrement utiles comme fonctions de rappel callable, mais leur utilisation n'est pas limitée à ce seul usage.
 
-Les fonctions anonymes sont implémentées en utilisant la classe Closure.
+Les fonctions anonymes sont implémentées en utilisant la classe **Closure**.
 
-Lorsque déclarée dans le contexte d'une classe, la classe courante est automatiquement liée, la rendant $this disponible dans le contexte de la fonction. Si ce liage automatique de la classe courante n'est pas souhaité, alors les fonctions anonymes statiques peuvent être utilisées à la place.
+Lorsque déclarée dans le contexte d'une classe, **la classe courante est automatiquement liée**, la rendant **$this disponible** dans le contexte de la fonction. Si ce liage automatique de la classe courante n'est pas souhaité, alors les fonctions anonymes statiques peuvent être utilisées à la place.
 
 - [Closure - php.net](http://php.net/manual/en/class.closure.php)
 
-Closure::__construct — Constructeur empêchant l'instanciation  
-Closure::bind — Duplique une fermeture avec un nouvel objet lié et un nouveau contexte de classe.  
-Closure::bindTo — Duplique la fermeture avec un nouvel objet lié et un nouveau contexte de classe.   
-Closure::call — Lie et appelle la fermeture  
-Closure::fromCallable — Convertis un callable en une fermeture  
+- **Closure::__construct** — Constructeur empêchant l'instanciation  
+- **Closure::bind** — Duplique une fermeture avec un nouvel objet lié et un nouveau contexte de classe.  
+- **Closure::bindTo** — Duplique la fermeture avec un nouvel objet lié et un nouveau contexte de classe.   
+- **Closure::call** — Lie et appelle la fermeture  
+- **Closure::fromCallable** — Convertis un callable en une fermeture  
 
 ## Abstract classes
 - [Class Abstraction - php.net](http://php.net/manual/en/language.oop5.abstract.php)
