@@ -10,18 +10,33 @@ title: PHP and Web Security - Symfony Certification Preparation List
 ## Object Oriented Programming
 - [Classes and Objects - php.net](http://php.net/manual/en/language.oop5.php)
 
-À partir de PHP 8.0.0, les méthodes et propriétés peuvent aussi être accédés avec l'opérateur "nullsafe": ?->. L'opérateur nullsafe fonctionne à l'identique que l'accès de propriétés ou méthodes comme si dessus, à l'exception que si l'objet qui est déréférencé est null alors null sera retourné au lieu de lancer une exception. Si le déréférencement fait par d'une chaîne, le reste de la chaîne est ignoré.
+À partir de PHP 8.0.0, les méthodes et propriétés peuvent aussi être accédés avec l'opérateur **"nullsafe": ?->.** L'opérateur nullsafe fonctionne à l'identique que l'accès de propriétés ou méthodes comme si dessus, à l'exception que si l'objet qui est déréférencé est null alors null sera retourné au lieu de lancer une exception. Si le déréférencement fait par d'une chaîne, le reste de la chaîne est ignoré.
 
-Note:
 L'opérateur nullsafe est mieux utilisé quand null est considéré une valeur valide et potentiellement attendu pour une propriété ou valeur de retour d'une méthode. Pour indiquer une erreur, une exception lancé est préférable.
 
-Note:
-Les constantes de classes peuvent être redéfinies par une classe enfant.
+**Les constantes de classes peuvent être redéfinies par une classe enfant.**
 
 Le constructeur peut être rendu privé ou protégé pour empêcher son appel depuis l'extérieur. Dans ce cas, seul une méthode statique sera capable d'instancier la classe. Car elles sont dans la même définition de classe elles ont accès aux méthodes privées, même dans une instance différente de l'objet. Un constructeur privé est optionnel et peut ou pas faire de sens en fonction du cas d'utilisation.
 
 
-Les méthodes suivantes sont considérées magiques : __construct(), __destruct(), __call(), __callStatic(), __get(), __set(), __isset(), __unset(), __sleep(), __wakeup(), __serialize(), __unserialize(), __toString(), __invoke(), __set_state() __clone(), et __debugInfo().
+Les méthodes suivantes sont considérées magiques : 
+- __construct(), 
+- __destruct(), 
+- __call(), 
+- __callStatic(), 
+- __get(), 
+- __set(), 
+- __isset(), 
+- __unset(), 
+- __sleep(), 
+- __wakeup(), 
+- __serialize(), 
+- __unserialize(), 
+- __toString(), 
+- __invoke(), 
+- __set_state(), 
+- __clone(), 
+- __debugInfo().
 
 Avertissement
 Toutes les méthodes magiques, à l'exception de __construct(), __destruct(), et __clone(), doivent être déclaré en tant que public, sinon une E_WARNING est émise. Antérieur à PHP 8.0.0, aucun diagnostic n'était émis pour les méthodes magiques __sleep(), __wakeup(), __serialize(), __unserialize(), et __set_state().
@@ -64,64 +79,38 @@ Closure::fromCallable — Convertis un callable en une fermeture
 ## Traits
 - [Traits - php.net](http://php.net/manual/fr/language.oop5.traits.php)
 
-Une méthode héritée depuis une classe mère est écrasée par une méthode issue d'un Trait. L'ordre de précédence fait en sorte que les méthodes de la classe courante écrasent les méthodes issues d'un Trait, elles-mêmes surchargeant les méthodes héritées.
+Une méthode héritée depuis une **classe mère est écrasée par une méthode issue d'un Trait**. L'ordre de précédence fait en sorte que **les méthodes de la classe courante écrasent les méthodes issues d'un Trait**, elles-mêmes surchargeant les méthodes héritées.
 
 ## PHP extensions
 - [Extensions (sorted by Membership) - php.net](http://php.net/manual/en/extensions.membership.php)
 
-Arrays
-
-Classes/Objects
-
-CSPRNG
-
-Date/Time
-
-Directories
-
-Error Handling
-
-Program execution
-
-Filesystem
-
-FastCGI Process Manager
-
-Function Handling
-
-Hash
-
-PHP Options/Info
-
-JSON
-
-Mail
-
-Math
-
-Misc.
-
-Network
-
-OPcache
-
-Output Control
-
-Password Hashing
-
-PCRE
-
-Reflection
-
-SPL
-
-Streams
-
-Strings
-
-URLs
-
-Variable handling
+- Arrays
+- Classes/Objects
+- CSPRNG
+- Date/Time
+- Directories
+- Error Handling
+- Program execution
+- Filesystem
+- FastCGI Process Manager
+- Function Handling
+- Hash
+- PHP Options/Info
+- JSON
+- Mail
+- Math
+- Misc.
+- Network
+- OPcache
+- Output Control
+- Password Hashing
+- PCRE
+- Reflection
+- SPL
+- Streams
+- Strings
+- URLs
+- Variable handling
 
 ## SPL
 - [Standard PHP Library - php.net](http://php.net/book.spl)
@@ -130,19 +119,19 @@ La bibliothèque standard PHP (SPL) est une collection d'interfaces et de classe
 
 SPL fournit des structures de données, un ensemble d'itérateur pour traverser des objets, des interfaces, un ensemble d'exceptions standards ainsi qu'un certain nombre de classes pour travailler avec des fichiers. SPL fournit aussi un jeu de fonctions telle que spl_autoload_register().
 
-La classe SplDoublyLinkedList fournit l'interface principale pour les listes doublement chaînées.
-SplDoublyLinkedList. 
-SplStack. 
-SplQueue. 
+La classe **SplDoublyLinkedList** fournit l'interface principale pour les listes doublement chaînées.
+- SplDoublyLinkedList. 
+- SplStack. 
+- SplQueue. 
 
-Les tas sont des structures de type arbre, qui suivent une propriété caractéristique : chaque nœud est plus grand ou égal que ses enfants, lorsqu'on les compare avec la méthode implémentée de comparaison, qui est globale au tas.
+Les tas sont des structures de type arbre, qui suivent une propriété caractéristique : **chaque nœud est plus grand ou égal que ses enfants**, lorsqu'on les compare avec la méthode implémentée de comparaison, qui est globale au tas.
 
-SplHeap. 
-SplMaxHeap. 
-SplMinHeap. 
-SplPriorityQueue. 
+- SplHeap. 
+- SplMaxHeap. 
+- SplMinHeap. 
+- SplPriorityQueue. 
 
-La classe SplFixedArray fournit les fonctionnalités principales d'un tableau. La différence majeure entre un objet SplFixedArray et un tableau standard de PHP est que SplFixedArray doit être redimensionné manuellement, et n'utilise que des entier dans cette intervale pour les index. L'avantage est qu'il utilise moins de mémoire qu'un tableau standard.
+La classe **SplFixedArray** fournit les fonctionnalités principales d'un **tableau**. La différence majeure entre un objet SplFixedArray et un tableau standard de PHP est que **SplFixedArray doit être redimensionné manuellement, et n'utilise que des entier dans cette intervale pour les index. L'avantage est qu'il utilise moins de mémoire qu'un tableau standard.**
 
-La classe SplObjectStorage fournit une carte d'objets ou de données, ou encore, en ignorant les index, un ensemble d'objets. Ce double objectif est utile dans de nombreuses situations, où il faut identifier de manière unique des objets.
+La classe **SplObjectStorage** fournit une carte d'objets ou de données, ou encore, en ignorant les index, un ensemble d'objets. Ce double objectif est utile dans de nombreuses situations, où il faut identifier de manière unique des objets.
 
