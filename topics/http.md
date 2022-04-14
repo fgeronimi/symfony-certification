@@ -201,6 +201,18 @@ This specification reserves the method name CONNECT **for use with a proxy that 
 ## HTTP response
 - [Response - w3.org](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html#sec6)
 
+```
+response-header = Accept-Ranges          ; Acceptance of range requests
+               | Age                     ; Time since the response was generated.
+               | ETag                    ; Current value of the entity tag
+               | Location                ; Single absolute URI for a complementary ressource (201, 3xx)
+               | Proxy-Authenticate      ; When 407
+               | Retry-After             ; How long the service is expected to be unavailable (503, 3xx)
+               | Server                  ; Contain multiple product tokens (Server Informations)
+               | Vary                    ; Cache information
+               | WWW-Authenticate        ; When 401
+```
+
 ## HTTP methods
 - [Method Definitions - w3.org](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html)
 
