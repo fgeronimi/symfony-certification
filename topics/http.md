@@ -218,7 +218,27 @@ response-header = Accept-Ranges          ; Acceptance of range requests
 
 ## Cookies
 - [HTTP cookie - wikipedia.org](https://en.wikipedia.org/wiki/HTTP_cookie)
-- [Setting Cookies - symfony.com](https://symfony.com/doc/5.0/components/http_foundation.html#setting-cookies)
+- [Setting Cookies - symfony.com](https://symfony.com/doc/6.0/components/http_foundation.html#setting-cookies)
+
+The response cookies can be manipulated through the headers public attribute:
+
+```
+use Symfony\Component\HttpFoundation\Cookie;
+$response->headers->setCookie(Cookie::create('foo', 'bar'));
+```
+
+The **setCookie()** method takes an instance of Cookie as an argument.
+
+You can clear a cookie via the **clearCookie()** method.
+
+In addition to the **Cookie::create()** method, you can create a Cookie object from a raw header value using fromString() method. You can also use the **with*() methods** to change some Cookie property (or to build the entire Cookie using a fluent interface). Each with*() method **returns a new object with the modified property**
+```
+$cookie = Cookie::create('foo')
+    ->withValue('bar')
+    ->withExpires(strtotime('Fri, 20-May-2011 15:25:52 GMT'))
+    ->withDomain('.example.com')
+    ->withSecure(true);
+```
 
 ## Caching
 See [HTTP Caching](./http-caching.md)
