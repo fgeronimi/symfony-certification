@@ -251,4 +251,413 @@ See [HTTP Caching](./http-caching.md)
 - [Accept-Language - w3.org](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4)
 
 ## Symfony HttpClient component
-- [HttpClient - symfony.com](https://symfony.com/doc/5.0/http_client.html)
+- [HttpClient - symfony.com](https://symfony.com/doc/6.0/http_client.html)
+
+Use the **HttpClient** class to make requests. In the Symfony framework, this class is available as the ``http_client`` service. This service will be **autowired** automatically when type-hinting for **HttpClientInterface**:
+
+use Symfony\Component\HttpClient\HttpClient;
+```
+$client = HttpClient::create();
+$response = $client->request('GET', 'https://api.github.com/repos/symfony/symfony-docs');
+
+$statusCode = $response->getStatusCode();
+// $statusCode = 200
+$contentType = $response->getHeaders()['content-type'][0];
+// $contentType = 'application/json'
+$content = $response->getContent();
+// $content = '{"id":521583, "name":"symfony-docs", ...}'
+$content = $response->toArray();
+// $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
+```
+
+You can configure the global options using the default_options option:
+
+```
+$client = HttpClient::create([
+     'max_redirects' => 7,
+]);
+```
+You can also use the withOptions() method to retrieve a new instance of the client with new default options:
+
+```
+$this->client = $client->withOptions([
+    'base_uri' => 'https://...',
+    'headers' => ['header-name' => 'header-value']
+]);
+```
+It's common that some of the HTTP client options depend on the URL of the request (e.g. you must set some headers when making requests to GitHub API but not for other hosts). If that's your case, the component provides scoped clients (using **ScopingHttpClient**) to autoconfigure the HTTP client based on the requested URL
+
+You can define several scopes, so that each set of options is added only if a requested URL matches one of the regular expressions set by the ``scope`` option.
+
+If you use scoped clients in the Symfony framework, you must use any of the methods defined by Symfony to choose a specific service. Each client has a unique service named after its configuration.
+
+Each scoped client also defines a corresponding named autowiring alias. If you use for example ``Symfony\Contracts\HttpClient\HttpClientInterface $githubClient`` as the type and name of an argument, autowiring will inject the ``github.client`` service into your autowired classes.
+
+**The HTTP client provides a single request() method to perform all kinds of HTTP requests**
+
+Responses are always asynchronous, so that the call to the method returns immediately instead of waiting to receive the response:
+```
+// code execution continues immediately; it doesn't wait to receive the response
+$response = $client->request('GET', 'http://releases.ubuntu.com/18.04.2/ubuntu-18.04.2-desktop-amd64.iso');
+
+// getting the response headers waits until they arrive
+$contentType = $response->getHeaders()['content-type'][0];
+
+// trying to get the response content will block the execution until
+// the full response content is received
+$content = $response->getContent();
+```
+**Authentication**
+
+The HTTP client supports different authentication mechanisms. They can be defined globally in the configuration (to apply it to all requests) and to each request (which overrides any global authentication):
+
+```
+// config/packages/framework.php
+use Symfony\Config\FrameworkConfig;
+
+return static function (FrameworkConfig $framework) {
+    $framework->httpClient()->scopedClient('example_api')
+        ->baseUri('https://example.com/')
+        // HTTP Basic authentication
+        ->authBasic('the-username:the-password')
+
+        // HTTP Bearer authentication (also called token authentication)
+        ->authBearer('the-bearer-token')
+
+        // Microsoft NTLM authentication
+        ->authNtlm('the-username:the-password')
+    ;
+};
+```
+**Query String Parameters**
+
+You can either append **Query String Parameters** manually to the requested URL, or define them as an associative array via the query option, that will be merged with the URL:
+
+```
+// it makes an HTTP GET request to https://httpbin.org/get?token=...&name=...
+$response = $client->request('GET', 'https://httpbin.org/get', [
+    // these values are automatically encoded before including them in the URL
+    'query' => [
+        'token' => '...',
+        'name' => '...',
+    ],
+]);
+```
+
+**Headers**
+
+Use the ``headers`` option to define the default headers added to all requests
+
+**Uploading Data**  
+
+This component provides several methods for uploading data using the body option. You can use regular strings, closures, iterables and resources and they'll be processed automatically when making the requests
+
+**Cookies**
+
+The HTTP client provided by this component is stateless but handling cookies requires a stateful storage (because responses can update cookies and they must be used for subsequent requests). That's why this component doesn't handle cookies automatically.
+
+You can either handle cookies yourself using the Cookie HTTP header or use the BrowserKit component which provides this feature and integrates seamlessly with the HttpClient component.
+
+**Redirects**
+
+By default, the HTTP client follows redirects, up to a maximum of 20, when making a request. Use the max_redirects setting to configure this behavior (if the number of redirects is higher than the configured value, you'll get a RedirectionException):
+
+```
+$response = $client->request('GET', 'https://...', [
+    // 0 means to not follow any redirect
+    'max_redirects' => 0,
+]);
+```
+
+**Retry Failed Requests**
+
+Sometimes, requests fail because of network issues or temporary server errors. Symfony's HttpClient allows to retry failed requests automatically using the retry_failed option.
+
+By default, failed requests are retried up to 3 times, with an exponential delay between retries (first retry = 1 second; third retry: 4 seconds) and only for the following HTTP status codes: 423, 425, 429, 502 and 503 when using any HTTP method and 500, 504, 507 and 510 when using an HTTP idempotent method.
+
+**HTTP Proxies**
+
+By default, this component honors the standard environment variables that your Operating System defines to direct the HTTP traffic through your local proxy. This means there is usually nothing to configure to have the client work with proxies, provided these env vars are properly configured.
+
+You can still set or override these settings using the proxy and no_proxy options:
+
+proxy should be set to the http://... URL of the proxy to get through
+no_proxy disables the proxy for a comma-separated list of hosts that do not require it to get reached.
+
+**Progress Callback**
+
+By providing a callable to the on_progress option, one can track uploads/downloads as they complete. This callback is guaranteed to be called on DNS resolution, on arrival of headers and on completion; additionally it is called when new data is uploaded or downloaded and at least once per second:
+
+```
+$response = $client->request('GET', 'https://...', [
+    'on_progress' => function (int $dlNow, int $dlSize, array $info): void {
+        // $dlNow is the number of bytes downloaded so far
+        // $dlSize is the total size to be downloaded or -1 if it is unknown
+        // $info is what $response->getInfo() would return at this very time
+    },
+]);
+```
+Any exceptions thrown from the callback will be wrapped in an instance of TransportExceptionInterface and will abort the request.
+
+**HTTPS Certificates**
+
+HttpClient uses the system's certificate store to validate SSL certificates (while browsers use their own stores
+
+**SSRF (Server-side request forgery) Handling**
+
+SSRF allows an attacker to induce the backend application to make HTTP requests to an arbitrary domain. These attacks can also target the internal hosts and IPs of the attacked server.
+
+If you use an ``HttpClient`` together with user-provided URIs, it is probably a good idea to decorate it with a ``NoPrivateNetworkHttpClient``. This will ensure local networks are made inaccessible to the HTTP client
+
+**Processing Responses**
+The response returned by all HTTP clients is an object of type ResponseInterface which provides the following methods
+```
+$response = $client->request('GET', 'https://...');
+
+// gets the HTTP status code of the response
+$statusCode = $response->getStatusCode();
+
+// gets the HTTP headers as string[][] with the header names lower-cased
+$headers = $response->getHeaders();
+
+// gets the response body as a string
+$content = $response->getContent();
+
+// casts the response JSON content to a PHP array
+$content = $response->toArray();
+
+// casts the response content to a PHP stream resource
+$content = $response->toStream();
+
+// cancels the request/response
+$response->cancel();
+
+// returns info coming from the transport layer, such as "response_headers",
+// "redirect_count", "start_time", "redirect_url", etc.
+$httpInfo = $response->getInfo();
+
+// you can get individual info too
+$startTime = $response->getInfo('start_time');
+// e.g. this returns the final response URL (resolving redirections if needed)
+$url = $response->getInfo('url');
+
+// returns detailed logs about the requests and responses of the HTTP transaction
+$httpLogs = $response->getInfo('debug');
+```
+
+**Streaming Responses**
+
+Call the ``stream()`` method of the HTTP client to get chunks of the response sequentially instead of waiting for the entire response
+
+**Canceling Responses** 
+
+To abort a request (e.g. because it didn't complete in due time, or you want to fetch only the first bytes of the response, etc.), you can either use the cancel() method of ResponseInterface:
+
+```
+$response->cancel();
+```
+
+**Handling Exceptions** 
+
+There are three types of exceptions, all of which implement the **ExceptionInterface**:
+
+- Exceptions implementing the **HttpExceptionInterface** are thrown when your code does not handle the status codes in the **300-599** range.
+- Exceptions implementing the **TransportExceptionInterface** are thrown when a lower level issue occurs.
+- Exceptions implementing the **DecodingExceptionInterface** are thrown when a content-type cannot be decoded to the expected representation.
+When the HTTP status code of the response is in the 300-599 range (i.e. 3xx, 4xx or 5xx), the **getHeaders(), getContent() and toArray() methods** throw an appropriate exception, all of which implement the **HttpExceptionInterface**.
+
+To opt-out from this exception and deal with 300-599 status codes on your own, pass false as the optional argument to every call of those methods, e.g. $response->getHeaders(false);.
+
+If you do not call any of these 3 methods at all, the exception will still be thrown when the $response object is destructed.
+
+Calling $response->getStatusCode() is enough to disable this behavior (but then don't miss checking the status code yourself).
+
+**Concurrent Requests** 
+
+Thanks to responses being lazy, requests are always managed concurrently. On a fast enough network, the following code makes 379 requests in less than half a second when cURL is used:
+
+```
+$responses = [];
+for ($i = 0; $i < 379; ++$i) {
+    $uri = "https://http2.akamai.com/demo/tile-$i.png";
+    $responses[] = $client->request('GET', $uri);
+}
+
+foreach ($responses as $response) {
+    $content = $response->getContent();
+    // ...
+}
+```
+As you can read in the first "for" loop, requests are issued but are not consumed yet. That's the trick when concurrency is desired: requests should be sent first and be read later on. This will allow the client to monitor all pending requests while your code waits for a specific one, as done in each iteration of the above "foreach" loop.
+
+**Multiplexing Responses**
+
+In order to do so, the stream() method of HTTP clients accepts a list of responses to monitor. As mentioned previously, this method yields response chunks as they arrive from the network. By replacing the "foreach" in the snippet with this one, the code becomes fully async:
+
+```
+foreach ($client->stream($responses) as $response => $chunk) {
+    if ($chunk->isFirst()) {
+        // headers of $response just arrived
+        // $response->getHeaders() is now a non-blocking call
+    } elseif ($chunk->isLast()) {
+        // the full content of $response just completed
+        // $response->getContent() is now a non-blocking call
+    } else {
+        // $chunk->getContent() will return a piece
+        // of the response body that just arrived
+    }
+}
+```
+
+**Dealing with Network Timeouts**
+
+The option can be overridden by using the 2nd argument of the stream() method. This allows monitoring several responses at once and applying the timeout to all of them in a group. If all responses become inactive for the given duration, the method will yield a special chunk whose isTimeout() will return true:
+
+```
+foreach ($client->stream($responses, 1.5) as $response => $chunk) {
+    if ($chunk->isTimeout()) {
+        // $response stale for more than 1.5 seconds
+    }
+}
+```
+
+A timeout is not necessarily an error: you can decide to stream again the response and get remaining contents that might come back in a new timeout, etc.
+
+**Dealing with Network Errors**
+
+Network errors (broken pipe, failed DNS resolution, etc.) are thrown as instances of TransportExceptionInterface.
+
+First of all, you don't have to deal with them: letting errors bubble to your generic exception-handling stack might be really fine in most use cases.
+
+If you want to handle them, here is what you need to know:
+
+
+**Caching Requests and Responses**
+
+This component provides a CachingHttpClient decorator that allows caching responses and serving them from the local storage for next requests. The implementation leverages the HttpCache class under the hood so that the HttpKernel component needs to be installed in your application.
+
+**Consuming Server-Sent Events**
+
+Server-sent events is an Internet standard used to push data to web pages. Its JavaScript API is built around an EventSource object, which listens to the events sent from some URL. The events are a stream of data (served with the text/event-stream MIME type).
+
+Symfony's HTTP client provides an EventSource implementation to consume these server-sent events. Use the EventSourceHttpClient to wrap your HTTP client, open a connection to a server that responds with a text/event-stream content type and consume the stream as follows:
+
+```
+use Symfony\Component\HttpClient\Chunk\ServerSentEvent;
+use Symfony\Component\HttpClient\EventSourceHttpClient;
+
+// the second optional argument is the reconnection time in seconds (default = 10)
+$client = new EventSourceHttpClient($client, 10);
+$source = $client->connect('https://localhost:8080/events');
+while ($source) {
+    foreach ($client->stream($source, 2) as $r => $chunk) {
+        if ($chunk->isTimeout()) {
+            // ...
+            continue;
+        }
+
+        if ($chunk->isLast()) {
+            // ...
+
+            return;
+        }
+
+        // this is a special ServerSentEvent chunk holding the pushed message
+        if ($chunk instanceof ServerSentEvent) {
+            // do something with the server event ...
+        }
+    }
+}
+```
+
+Testing
+
+This component includes the **MockHttpClient** and **MockResponse** classes to use in tests that shouldn't make actual HTTP requests. Such tests can be useful, as they will run faster and produce consistent results, since they're not dependent on an external service. By not making actual HTTP requests there is no need to worry about the service being online or the request changing state, for example deleting a resource.
+
+**MockHttpClient** implements the **HttpClientInterface**, just like any actual HTTP client in this component. When you type-hint with HttpClientInterface your code will accept the real client outside tests, while replacing it with MockHttpClient in the test.
+
+When the request method is used on MockHttpClient, it will respond with the supplied MockResponse. The **MockResponse** class comes with some helper methods to test the request:
+
+- ``getRequestMethod()`` - returns the HTTP method;
+- ``getRequestUrl()`` - returns the URL the request would be sent to;
+- ``getRequestOptions()`` - returns an array containing other information about the request such as headers, query parameters, body content etc.
+
+The following standalone example demonstrates a way to use the HTTP client and test it in a real application:
+
+```
+// ExternalArticleService.php
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+
+final class ExternalArticleService
+{
+    private HttpClientInterface $httpClient;
+
+    public function __construct(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    public function createArticle(array $requestData): array
+    {
+        $requestJson = json_encode($requestData, JSON_THROW_ON_ERROR);
+
+        $response = $this->httpClient->request('POST', 'api/article', [
+            'headers' => [
+                'Content-Type: application/json',
+                'Accept: application/json',
+            ],
+            'body' => $requestJson,
+        ]);
+
+        if (201 !== $response->getStatusCode()) {
+            throw new Exception('Response status code is different than expected.');
+        }
+
+        // ... other checks
+
+        $responseJson = $response->getContent();
+        $responseData = json_decode($responseJson, true, 512, JSON_THROW_ON_ERROR);
+
+        return $responseData;
+    }
+}
+
+// ExternalArticleServiceTest.php
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\MockHttpClient;
+use Symfony\Component\HttpClient\Response\MockResponse;
+
+final class ExternalArticleServiceTest extends TestCase
+{
+    public function testSubmitData(): void
+    {
+        // Arrange
+        $requestData = ['title' => 'Testing with Symfony HTTP Client'];
+        $expectedRequestData = json_encode($requestData, JSON_THROW_ON_ERROR);
+
+        $expectedResponseData = ['id' => 12345];
+        $mockResponseJson = json_encode($expectedResponseData, JSON_THROW_ON_ERROR);
+        $mockResponse = new MockResponse($mockResponseJson, [
+            'http_code' => 201,
+            'response_headers' => ['Content-Type: application/json'],
+        ]);
+
+        $httpClient = new MockHttpClient($mockResponse, 'https://example.com');
+        $service = new ExternalArticleService($httpClient);
+
+        // Act
+        $responseData = $service->createArticle($requestData);
+
+        // Assert
+        self::assertSame('POST', $mockResponse->getRequestMethod());
+        self::assertSame('https://example.com/api/article', $mockResponse->getRequestUrl());
+        self::assertContains(
+            'Content-Type: application/json',
+            $mockResponse->getRequestOptions()['headers']
+        );
+        self::assertSame($expectedRequestData, $mockResponse->getRequestOptions()['body']);
+
+        self::assertSame($responseData, $expectedResponseData);
+    }
+}
+```
