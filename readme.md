@@ -71,7 +71,7 @@ contains information for the 6.0 certification.
     - [File upload](/topics/controllers.md#file-upload)
     - [Built-in internal controllers](/topics/controllers.md#built-in-internal-controllers)
 - [Routing](/topics/routing.md)
-    - [Configuration (YAML, XML, PHP & attributes/annotations)](/topics/routing.md#configuration-yaml-xml-php--annotations)
+    - [Configuration (YAML, XML, PHP & attributes/annotations)](/topics/routing.md#configuration-yaml-xml-php--attributesannotations)
     - [Parameters](/topics/routing.md#parameters)
     - [Generate URL parameters](/topics/routing.md#generate-url-parameters)
     - [Trigger redirects](/topics/routing.md#trigger-redirects)
