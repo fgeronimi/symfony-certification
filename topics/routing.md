@@ -96,6 +96,14 @@ public function show(BlogPost $post): Response
 {
 ```
 ### Special Parameters :
+
+- [Special Routing Parameters - symfony.com](https://symfony.com/doc/6.0/routing.html#special-parameters)
+
+`_controller` : As you've seen, this parameter is used to determine which controller is executed when the route is matched.  
+`_format` : Used to set the request format.  
+`_fragment` : Used to set the fragment identifier, the optional last part of a URL that starts with a # character and is used to identify a portion of a document.  
+`_locale` : Used to set the locale on the request .  
+
 ```
  /**
  * @Route(
@@ -253,8 +261,35 @@ legacy_doc:
         permanent: true
 ```
 
-## Special internal routing attributes
-- [Special Routing Parameters - symfony.com](https://symfony.com/doc/6.0/routing.html#special-routing-parameters)
+## Stateless Routes
+Sometimes, when an HTTP response should be cached, it is important to ensure that can happen. However, whenever a session is started during a request, Symfony turns the response into a private non-cacheable response.
+
+For details, see HTTP Cache.
+
+Routes can configure a stateless boolean option in order to declare that the session shouldn't be used when matching a request:
+```
+// src/Controller/MainController.php
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
+
+class MainController extends AbstractController
+{
+    /**
+     * @Route("/", name="homepage", stateless=true)
+     */
+    public function homepage()
+    {
+        // ...
+    }
+}
+```
+Now, if the session is used, the application will report it based on your kernel.debug parameter:
+
+`enabled`: will throw an UnexpectedSessionUsageException exception  
+`disabled`: will log a warning  
+It will help you understand and hopefully fixing unexpected behavior in your application.
 
 ## Sub domain routing
 - [How to Match a Route Based on the Host - symfony.com](https://symfony.com/doc/current/routing.html#sub-domain-routing)
