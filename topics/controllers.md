@@ -207,12 +207,24 @@ If you want to redirect the user to another page, use the **redirectToRoute()** 
 Though not very common, you can also forward to another controller internally with the **forward()** method provided by the **AbstractController class**.
 
 ## Generate 404 pages
-- [Managing Errors and 404 Pages - symfony.com](https://symfony.com/doc/5.0/controller.html#managing-errors-and-404-pages)
+- [Managing Errors and 404 Pages - symfony.com](https://symfony.com/doc/6.0/controller.html#managing-errors-and-404-pages)
 - [How to Customize Error Pages - symfony.com](https://symfony.com/doc/5.0/controller/error_pages.html)
 
 ## File upload
-- [How to Upload Files - symfony.com](https://symfony.com/doc/5.0/controller/upload_file.html)
+- [How to Upload Files - symfony.com](https://symfony.com/doc/6.0/controller/upload_file.html)
+
+In Symfony applications, uploaded files are objects of the **UploadedFile** class. This class provides methods for the most common operations when dealing with uploaded files;
+
+
+A well-known security best practice is to never trust the input provided by users. This also applies to the files uploaded by your visitors. The **UploadedFile** class provides methods to get the original file extension (getClientOriginalExtension()), the original file size (getSize()) and the original file name (getClientOriginalName()). However, they are considered **not safe** because a malicious user could tamper that information. That's why it's always better to generate a unique name and use the **guessExtension() method to let Symfony guess the right extension according to the file MIME type**;
+
 
 ## Built-in internal controllers
-- [How to Render a Template directly from a route - symfony.com](https://symfony.com/doc/5.0/templates.html#rendering-a-template-directly-from-a-route)
-- [How to Redirect to Urls and Routes directly from a route - symfony.com](https://symfony.com/doc/5.0/routing.html#redirecting-to-urls-and-routes-directly-from-a-route)
+- [How to Render a Template directly from a route - symfony.com](https://symfony.com/doc/6.0/templates.html#rendering-a-template-directly-from-a-route)
+
+Although templates are usually rendered in controllers and services, you can render static pages that don't need any variables directly from the route definition. Use the special **TemplateController** provided by Symfony
+
+
+- [How to Redirect to Urls and Routes directly from a route - symfony.com](https://symfony.com/doc/6.0/routing.html#redirecting-to-urls-and-routes-directly-from-a-route)
+
+Use the **RedirectController** to redirect to other routes and URLs
