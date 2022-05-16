@@ -91,7 +91,7 @@ Isin
 **Other Constraints**
 ```
 AtLeastOneOf  
-Sequentially  
+Sequentially
 Compound  
 Callback  
 Expression  
@@ -201,10 +201,115 @@ If no groups are specified, all constraints that belong to the group Default wil
 
 
 ## Group sequence
-- [How to Sequentially Apply Validation Groups - symfony.com](https://symfony.com/doc/5.0/validation/sequence_provider.html)
+- [How to Sequentially Apply Validation Groups - symfony.com](https://symfony.com/doc/6.0/validation/sequence_provider.html)
+
+In this example, it will first validate all constraints in the group User (which is the same as the Default group). Only if all constraints in that group are valid, the second group, Strict, will be validated. :
+```
+// src/Entity/User.php
+namespace App\Entity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @Assert\GroupSequence({"User", "Strict"})
+ */
+class User implements UserInterface
+{
+    /**
+     * @Assert\NotBlank
+     */
+    private $username;
+
+    /**
+     * @Assert\NotBlank
+     */
+    private $password;
+
+    /**
+     * @Assert\IsTrue(message="The password cannot match your username", groups={"Strict"})
+     */
+    public function isPasswordSafe()
+    {
+        return ($this->username !== $this->password);
+    }
+}
+```
+
+You can also define a group sequence in the validation_groups form option:
+
+```
+class MyType extends AbstractType
+{
+    // ...
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'validation_groups' => new GroupSequence(['First', 'Second']),
+        ]);
+    }
+}
+
+```
+
+```
+// src/Entity/User.php
+namespace App\Entity;
+
+// ...
+use Symfony\Component\Validator\GroupSequenceProviderInterface;
+
+/**
+ * @Assert\GroupSequenceProvider
+ */
+class User implements GroupSequenceProviderInterface
+{
+    // ...
+
+    public function getGroupSequence()
+    {
+        // when returning a simple array, if there's a violation in any group
+        // the rest of the groups are not validated. E.g. if 'User' fails,
+        // 'Premium' and 'Api' are not validated:
+        return ['User', 'Premium', 'Api'];
+
+        // when returning a nested array, all the groups included in each array
+        // are validated. E.g. if 'User' fails, 'Premium' is also validated
+        // (and you'll get its violations too) but 'Api' won't be validated:
+        return [['User', 'Premium'], 'Api'];
+    }
+}
+```
+
+Sometimes, you may want to apply constraints sequentially on a single property. The Sequentially constraint can solve this for you in a more straightforward way than using a GroupSequence.
 
 ## Custom callback validators
-- [Callback Constraint - symfony.com](https://symfony.com/doc/5.0/reference/constraints/Callback.html)
+- [Callback Constraint - symfony.com](https://symfony.com/doc/6.0/reference/constraints/Callback.html)
+```
+// ...
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
+class Author
+{
+    // ...
+    private $firstName;
+    
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        // somehow you have an array of "fake names"
+        $fakeNames = [/* ... */];
+
+        // check if the name is actually a fake name
+        if (in_array($this->getFirstName(), $fakeNames)) {
+            $context->buildViolation('This name sounds totally fake!')
+                ->atPath('firstName')
+                ->addViolation();
+        }
+    }
+}
+```
 ## Violations builder
-- [Custom Validation Constraint - symfony.com](https://symfony.com/doc/5.0/validation/custom_constraint.html)
+- [Custom Validation Constraint - symfony.com](https://symfony.com/doc/6.0/validation/custom_constraint.html)
