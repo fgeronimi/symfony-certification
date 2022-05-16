@@ -8,11 +8,11 @@ title: Templating with Twig - Symfony Certification Preparation List
 
 The rendering of a Twig template can be summarized into four key steps:
 
-**Load the template**: If the template is already compiled, load it and go to the evaluation step, otherwise:
+**Load the template**: If the template is already compiled, load it and go to the evaluation step, otherwise:  
 
-First, the **lexer** tokenizes the template source code into small pieces for easier processing;
-Then, the **parser** converts the token stream into a meaningful tree of nodes (the Abstract Syntax Tree);
-Finally, the **compiler** transforms the AST into PHP code.
+First, the **lexer** tokenizes the template source code into small pieces for easier processing;  
+Then, the **parser** converts the token stream into a meaningful tree of nodes (the Abstract Syntax Tree);  
+Finally, the **compiler** transforms the AST into PHP code.  
 
 **Evaluate the template**: It means calling the display() method of the compiled template and passing it the context.
 
